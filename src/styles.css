@@ -50,3 +50,22 @@ input {
 .stats-item:not(:last-child) {
   margin-right: 10px;
 }
+
+
+/* Load-more */
+.button {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.button.is-hidden {
+  display: none;
+}
+
+.button>.spinner.is-hidden {
+  display: none;
+}
+
+/* spinner */
+
