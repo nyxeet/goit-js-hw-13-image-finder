@@ -8,14 +8,13 @@ export default {
   fetchImages(){
     const url = `https://pixabay.com/api/?image_type=photo&orientation=horizontal&q=${this.query}&page=${this.page}&per_page=12&key=${apiKey}`;
     const options = {
-      headers: {
-      },
+      headers: {},
     };
     return fetch(url, options)
-      .then(res => res.json().then(({ hits }) => {
+      .then(res => res.json()).then(({ hits }) => {
         this.incrementPage();
         return hits;
-      }));
+      });
   },
   
   resetPage() {

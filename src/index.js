@@ -1,6 +1,6 @@
 import './styles.css';
-import imageService from './js/image-service';
-import _, { debounce } from 'lodash';
+import apiService from './js/apiService';
+import { debounce } from 'lodash';
 import updateArticlesMarkup from './js/update-articles';
 import LoadMoreBtn from './js/load-more-button';
 import refs from './js/refs';
@@ -13,21 +13,21 @@ const loadMoreBtn = new LoadMoreBtn({
 loadMoreBtn.refs.button.addEventListener('click', fetchImages);
 refs.searchForm.addEventListener(
   'input',
-  _.debounce(() => {
+  debounce(() => {
     searchFirstPageImages();
   }, 500),
 );
 
 function searchFirstPageImages(event) {
-  imageService.query = refs.searchForm.value;
+  apiService.query = refs.searchForm.value;
   clearImagesContainer();
-  imageService.resetPage();
+  apiService.resetPage();
   fetchImages();
 }
 
 function fetchImages() {
   loadMoreBtn.disable();
-  imageService.fetchImages().then(hits => {
+  apiService.fetchImages().then(hits => {
     updateArticlesMarkup(hits);
     loadMoreBtn.show();
     loadMoreBtn.enable();
